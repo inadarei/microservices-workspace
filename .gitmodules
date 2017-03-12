@@ -1,0 +1,4 @@
+[submodule "microservices-workspace-ms-demo-golang"]
+	path = microservices-workspace-ms-demo-golang
+	url = git@github.com:inadarei/microservices-workspace-ms-demo-golang.git
+	branch = master
