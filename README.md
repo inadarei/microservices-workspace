@@ -29,7 +29,7 @@ and which to treat as "external dependencies". Loosely coupled approach of submo
 gives a lot of flexibility in making such judgement calls.
 
 **ATTENTION:** unfortunately, git doesn't update external submodules when they change
-so we highyl recomment running `git submodule update --init --recursive` in the
+so we highly recommend running `git submodule update --init --recursive` in the
 main repo, frequently.
 
 ## Installing
@@ -78,7 +78,7 @@ To tear-down the project:
    ```
 
 2. **ATTENTION:** unfortunately, git doesn't update external submodules when they change
-so we highyl recomment running `git submodule update --init --recursive` in the
+so we highly recommend running `git submodule update --init --recursive` in the
 main repo, frequently. 
 
 ## How to add more microservices:
