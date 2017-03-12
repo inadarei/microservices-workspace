@@ -1,5 +1,16 @@
 # microservices-workspace
-Example local setup for developing heterogeneous microservices
+Example local setup for developing heterogeneous microservices.
+
+In this setup we show:
+
+1. A microservcie written in Go and set up with code hot-reloading for 
+   comfortable development. 
+2. A microservice written in Node and similarly set up with code hot-reloading
+3. A Kong-based API gateway wiring microservices to various routes so that
+   the clients don't need to fix their calls to multiple ports the microservices
+   actualy serve from. Kong saves its state in a Postgres database.
+4. Reliably set up database that a microservice can use (MySQL for the sake of the demo).
+   Database setup uses Docker volumes and survives container restarts/crashes.
 
 ## Installing
 
