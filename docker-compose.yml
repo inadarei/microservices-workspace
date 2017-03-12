@@ -34,14 +34,17 @@ services:
     volumes:
       - ./ms-demo-node:/opt/application
       - /opt/application/node_modules
+    expose:
+      - 77702
     ports:
-      - 7702:3000
+      - 7702:7702
     environment: 
       - NODE_ENV=development
       - NODE_CLUSTERED=1
       - NODE_HOT_RELOAD=1
       - NODE_LOGGER_GRANULARLEVELS=1
       - NODE_CONFIG_DISABLE_FILE_WATCH="Y"
+      - PORT=7702
     command: nodemon -L -e js,coffee,jade,handlebars server.js
 
   # Kong API Gateway
@@ -56,7 +59,7 @@ services:
       - KONG_PG_USER=kong
       - KONG_PG_DATABASE=kong
       - KONG_PG_PASSWORD=kong_pw
-      - KONG_PLUGINS_AVAILABLE=jwt,cors,oauth2,request-transformer,response-transformer,rate-limiting
+      #- KONG_PLUGINS_AVAILABLE=jwt,cors,oauth2,request-transformer,response-transformer,rate-limiting
     expose: 
       - 8000
       - 8001
