@@ -32,6 +32,12 @@ gives a lot of flexibility in making such judgement calls.
 so we highly recommend running `git submodule update --init --recursive` in the
 main repo, frequently.
 
+## Prerequisites:
+
+A working Docker setup, which you can get relatively easily at this point 
+on Mac and Windows: https://www.docker.com/community-edition and has always
+been [straighforward on Linux](https://docs.docker.com/engine/installation/#platform-support-matrix).
+
 ## Installing
 
 To run the entire project with all microservices and databases:
