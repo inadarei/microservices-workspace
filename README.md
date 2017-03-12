@@ -7,22 +7,24 @@ In this setup we show:
    comfortable development. 
 2. A microservice written in Node and similarly set up with code hot-reloading
 3. A Kong-based API gateway wiring microservices to various routes so that
-   the clients don't need to fix their calls to multiple ports the microservices
-   actualy serve from. Kong saves its state in a Postgres database.
-4. Reliably set up database that a microservice can use (MySQL for the sake of the demo).
+   the clients don't need to know about and hardcode their calls against multiple 
+   ports the microservices actualy serve from. Kong saves its state in a Postgres database.
+4. Resilient set-up of database that a microservice can use (MySQL for the sake of the demo).
    Database setup uses Docker volumes and survives container restarts/crashes.
-5. Each microservice is checked into their own Git repository. This repository 
-   simply orchestrates creation of a single point, from which all developers can
-   grab the entire project and easily build it.
+5. Each microservice is checked into their own Git repository. This main repository 
+   you are currently viewing simply orchestrates creation of a single "workspace" 
+   point, from which all developers can grab the entire project and easily build it.
 
-As systems get large you may not be able  to use this approach for the entire project.
+As systems get large you may not want to use single workspace for the entire project.
 Especially in case of large and advanced microservices deployments where companies find
 themselves running hundreds of services. However, this simple approach is very convenient
 for sub-systems, subdomains of a larger system, where services are still very much
-related. To access services in other sub-systems a lot of teams treat those on par
-with external APIs and just access stable production or sandbox versions. 
+related and developed by a single team or collaborating teams. To access services 
+in other, less related sub-systems of an enterprise deployment, a lot of teams treat 
+them on par with external APIs and just access stable production or sandbox versions
+of those services. 
 
-We assume that you will use your own judgement about what services to pull in as submodules
+We assume that you will use your own judgement about what services to pull-in as submodules
 and which to treat as "external dependencies". Loosely coupled approach of submodules
 gives a lot of flexibility in making such judgement calls.
 
