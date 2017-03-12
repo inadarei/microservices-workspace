@@ -6,7 +6,7 @@ Example local setup for developing heterogeneous microservices
 To run the entire project with all microservices and databases:
 
 ```
-git submodule update --init --recursive
+> git submodule update --init --recursive
 
 # Bring everything up in daemon mode. Remove "-d" to debug
 > docker-compose up -d
