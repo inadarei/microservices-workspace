@@ -4,9 +4,9 @@ services:
   ms-wkspc-demo-golang:
     container_name: ms-wkspc-demo-golang
     build:
-      context: microservices-workspace-ms-demo-golang
+      context: ms-demo-golang
     volumes:
-      - ./microservices-workspace-ms-demo-golang:/go/src/app
+      - ./ms-demo-golang:/go/src/app
       ## Remove the following line if you are checking-in your dependencies 
       - /go/src/app/vendor
     expose:
