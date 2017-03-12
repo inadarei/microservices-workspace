@@ -86,7 +86,9 @@ main repo, frequently.
 Example command:
 
 ```
-> git submodule add -b master git@github.com:inadarei/microservices-workspace-ms-demo-golang.git ms-demo-golang
+> git submodule add -b master \
+      git@github.com:inadarei/microservices-workspace-ms-demo-golang.git \
+      ms-demo-golang
 ```
 
 # Wiring a new service into the Kong API Gateway
