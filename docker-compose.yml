@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  ms_golang:
+    container_name: ms-wkspc-demo-golang
+    build:
+      context: microservices-workspace-ms-demo-golang
+    volumes:
+      - ./microservices-workspace-ms-demo-golang:/go/src/app
+      ## Remove the following line if you are checking-in your dependencies 
+      - /go/src/app/vendor
+    expose:
+      - 77701
+    ports:
+      - 7701:7701
+    environment:
+      - APP_ENV=development
+      - PORT=7701
+      - DBNAME=microservices_demo
+      - DBUSER=microservices_demo
+      - DBPASS=microservices_demo_pw
+      - DBADDR=msa_demo_db:3306
+      - DEBUG=1
+    command: /go/bin/CompileDaemon -build="go-wrapper install" -command="go-wrapper run" -exclude-dir=.git
+    depends_on:
+      - msa_demo_db
+    links:
+      - msa_demo_db
+
+  msa_demo_db:
+    container_name: msa_demo_db
+    image: mysql:5.7
+    # port mapping not required for microservices but useful for debugging from 
+    # host machine, during development
+    ports: 
+      - 33306:3306
+    volumes:
+      - msa_demo_db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: verysecretsomething
+      MYSQL_DATABASE: microservices_demo
+      MYSQL_USER: microservices_demo
+      MYSQL_PASSWORD: microservices_demo_pw
+
+volumes:
+  msa_demo_db_data:
+
