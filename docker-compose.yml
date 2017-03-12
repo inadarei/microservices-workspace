@@ -39,6 +39,7 @@ services:
       - KONG_PG_USER=kong
       - KONG_PG_DATABASE=kong
       - KONG_PG_PASSWORD=kong_pw
+      - KONG_PLUGINS_AVAILABLE=jwt,cors,oauth2,request-transformer,response-transformer,rate-limiting
     expose: 
       - 8000
       - 8001
@@ -52,6 +53,9 @@ services:
       - kong_db
     links:
       - ms-wkspc-demo-golang
+    volumes:
+      - .:/tmp/run
+    command: /tmp/run/wait-for-it.sh kong_db:5432 -- kong start
   
   msa_demo_db:
     container_name: msa_demo_db

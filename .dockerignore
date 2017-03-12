@@ -1,0 +1,9 @@
+.DS_Store
+Dockerfile
+docker-compose.yml
+LICENSE
+README.md
+ms-*
+.gitignore
+.gitmodules
+register-microservices.sh
