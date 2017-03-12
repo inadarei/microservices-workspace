@@ -11,6 +11,24 @@ In this setup we show:
    actualy serve from. Kong saves its state in a Postgres database.
 4. Reliably set up database that a microservice can use (MySQL for the sake of the demo).
    Database setup uses Docker volumes and survives container restarts/crashes.
+5. Each microservice is checked into their own Git repository. This repository 
+   simply orchestrates creation of a single point, from which all developers can
+   grab the entire project and easily build it.
+
+As systems get large you may not be able  to use this approach for the entire project.
+Especially in case of large and advanced microservices deployments where companies find
+themselves running hundreds of services. However, this simple approach is very convenient
+for sub-systems, subdomains of a larger system, where services are still very much
+related. To access services in other sub-systems a lot of teams treat those on par
+with external APIs and just access stable production or sandbox versions. 
+
+We assume that you will use your own judgement about what services to pull in as submodules
+and which to treat as "external dependencies". Loosely coupled approach of submodules
+gives a lot of flexibility in making such judgement calls.
+
+**ATTENTION:** unfortunately, git doesn't update external submodules when they change
+so we highyl recomment running `git submodule update --init --recursive` in the
+main repo, frequently.
 
 ## Installing
 
@@ -56,6 +74,10 @@ To tear-down the project:
    ports:
      - 80:8000
    ```
+
+2. **ATTENTION:** unfortunately, git doesn't update external submodules when they change
+so we highyl recomment running `git submodule update --init --recursive` in the
+main repo, frequently. 
 
 ## How to add more microservices:
 
