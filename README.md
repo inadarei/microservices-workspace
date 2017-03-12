@@ -28,5 +28,5 @@ To tear-down the project:
 Example command:
 
 ```
-> git submodule add -b master git@github.com:inadarei/microservices-workspace-ms-demo-golang.git
+> git submodule add -b master git@github.com:inadarei/microservices-workspace-ms-demo-golang.git ms-demo-golang
 ```

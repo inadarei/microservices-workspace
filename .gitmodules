@@ -2,3 +2,7 @@
 	path = ms-demo-golang
 	url = git@github.com:inadarei/microservices-workspace-ms-demo-golang.git
 	branch = master
+[submodule "ms-demo-node"]
+	path = ms-demo-node
+	url = git@github.com:inadarei/microservices-workspace-ms-demo-node.git
+	branch = master
