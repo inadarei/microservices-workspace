@@ -96,7 +96,7 @@ services:
   
   kong_db:
     container_name: kong_db
-    image: postgres:9.4
+    image: postgres:9.5-alpine
     # port mapping not required for microservices but useful for debugging from 
     # host machine, during development
     ports:
