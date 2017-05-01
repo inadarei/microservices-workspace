@@ -1,52 +1,6 @@
 version: "3"
 
 services:
-  ms-wkspc-demo-golang:
-    container_name: ms-wkspc-demo-golang
-    build:
-      context: ms-demo-golang
-    volumes:
-      - ./ms-demo-golang:/go/src/app
-      ## Remove the following line if you are checking-in your dependencies 
-      - /go/src/app/vendor
-    expose:
-      - 77701
-    ports:
-      - 7701:7701
-    environment:
-      - APP_ENV=development
-      - PORT=7701
-      - DBNAME=microservices_demo
-      - DBUSER=microservices_demo
-      - DBPASS=microservices_demo_pw
-      - DBADDR=msa_demo_db:3306
-      - DEBUG=1
-    command: /go/bin/CompileDaemon -build="go-wrapper install" -command="go-wrapper run" -exclude-dir=.git
-    depends_on:
-      - msa_demo_db
-    links:
-      - msa_demo_db
-  
-  ms-wkspc-demo-node:
-    container_name: ms-wkspc-demo-node
-    build:
-      context: ms-demo-node
-    volumes:
-      - ./ms-demo-node:/opt/application
-      - /opt/application/node_modules
-    expose:
-      - 77702
-    ports:
-      - 7702:7702
-    environment: 
-      - NODE_ENV=development
-      - NODE_CLUSTERED=1
-      - NODE_HOT_RELOAD=1
-      - NODE_LOGGER_GRANULARLEVELS=1
-      - NODE_CONFIG_DISABLE_FILE_WATCH="Y"
-      - PORT=7702
-    command: nodemon -L -e js,coffee,jade,handlebars server.js
-
   # Kong API Gateway
   kong:
     container_name: kong
@@ -72,28 +26,11 @@ services:
     depends_on:
       - kong_db
     links:
-      - ms-wkspc-demo-golang
-      - ms-wkspc-demo-node
+      - ms-demo-golang
+      - ms-demo-node
     volumes:
       - .:/tmp/run
     command: /tmp/run/wait-for-it.sh kong_db:5432 -- kong start
-  
-  msa_demo_db:
-    container_name: msa_demo_db
-    image: mysql:5.7
-    # port mapping not required for microservices but useful for debugging from 
-    # host machine, during development
-    ports: 
-      - 33306:3306
-    volumes:
-      - msa_demo_db_data:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: verysecretsomething
-      MYSQL_DATABASE: microservices_demo
-      MYSQL_USER: microservices_demo
-      MYSQL_PASSWORD: microservices_demo_pw
-  
   kong_db:
     container_name: kong_db
     image: postgres:9.5-alpine
@@ -109,6 +46,5 @@ services:
       - POSTGRES_PASSWORD=kong_pw
 
 volumes:
-  msa_demo_db_data:
   kong_db_data:
 
