@@ -6,11 +6,7 @@ build:
 
 .PHONY: run
 run: 
-	docker-compose \
-	-f ms-demo-node/docker-compose.yml \
-	-f ms-demo-golang/docker-compose.yml \
-	-f docker-compose.yml \
-	up --build --force-recreate -d
+	./launch.sh
 
 .PHONY: destroy
 destroy: 
@@ -22,10 +18,8 @@ logs:
 
 .PHONY: add
 add:
-	git submodule add -b master \
-		https://github.com/${repo} \
-		${repo}
+	git submodule add -b master https://github.com/${repo} ${repo}
 
 .PHONY: register_microservices
 register_microservices:
-	register_microservices.sh
+	./register_microservices.sh
