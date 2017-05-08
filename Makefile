@@ -12,6 +12,10 @@ stop:
 logs: 
 	docker-compose logs -t
 
+.PHOMY: update
+update:
+	git submodule update --init --recursive
+
 .PHONY: add
 add:
 	git submodule add -b master https://github.com/${repo} ${repo}
