@@ -47,20 +47,19 @@ To run the entire project with all microservices and databases:
 > git submodule update --init --recursive
 
 # Bring everything up in daemon mode. 
-> docker-compose up -d && docker-compose logs -f
+> make run && make logs
 
 # Make sure everything started fine:
-> docker-compose ps
+> docker ps -a
 
 # Register individual microservices with the API Gateway (Kong):
-> ./register-microservices.sh
+> make register_all
 ```
 
 To tear-down the project:
 
 ```
-> docker-compose stop
-> docker-compose rm -f 
+> make stop
 ```
 
 ## Using
@@ -104,7 +103,7 @@ Example command:
    to existing definitions under docker-compose.yml, such as:
 
    ```
-   links:
+   external_links:
      - ms-wkspc-demo-golang
      - ms-wkspc-demo-node
    ```

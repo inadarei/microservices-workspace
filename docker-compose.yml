@@ -5,8 +5,6 @@ services:
   kong:
     container_name: kong
     image: kong
-    links:
-      - kong_db
     environment:
       - KONG_DATABASE=postgres
       - KONG_PG_HOST=kong_db
@@ -26,6 +24,8 @@ services:
     depends_on:
       - kong_db
     links:
+      - kong_db      
+    external_links:
       - ms-demo-golang
       - ms-demo-node
     volumes:

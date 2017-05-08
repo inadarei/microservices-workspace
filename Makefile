@@ -1,16 +1,12 @@
-default: build
-
-.PHONY: build
-build:
-	docker-compose build --no-cache 
+default: start
 
 .PHONY: run
-run: 
+start: 
 	./launch.sh
 
-.PHONY: destroy
-destroy: 
-	docker-compose down
+.PHONY: stop
+stop: 
+	./stop.sh
 
 .PHONY: logs
 logs: 
@@ -21,5 +17,5 @@ add:
 	git submodule add -b master https://github.com/${repo} ${repo}
 
 .PHONY: register_microservices
-register_microservices:
+register_all:
 	./register_microservices.sh
