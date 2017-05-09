@@ -1,8 +1,8 @@
 default: start
 
-.PHONY: run
+.PHONY: start
 start: 
-	./launch.sh
+	./start.sh
 
 .PHONY: stop
 stop: 
@@ -22,4 +22,4 @@ add:
 
 .PHONY: register_microservices
 register_all:
-	./register_microservices.sh
+	./register-microservices.sh

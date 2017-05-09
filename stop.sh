@@ -2,6 +2,8 @@
 
 export COMPOSE_PROJECT_NAME=microservices-workspace-demo
 
-docker-compose -f ms-demo-node/docker-compose.yml down
-docker-compose -f ms-demo-golang/docker-compose.yml down
-docker-compose -f docker-compose.yml down
+export wkdr=$PWD
+cd $wkdr/ms-demo-node && docker-compose down
+cd $wkdr/ms-demo-golang && docker-compose down
+cd $wkdr && docker-compose down
+unset wkdr
