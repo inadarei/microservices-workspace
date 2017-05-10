@@ -47,7 +47,7 @@ To run the entire project with all microservices and databases:
 > git submodule update --init --recursive
 
 # Bring everything up in daemon mode. 
-> make run && make logs
+> make
 
 # Make sure everything started fine:
 > docker ps -a
