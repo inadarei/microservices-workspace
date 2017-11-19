@@ -1,20 +1,36 @@
 default: start
 
+project:=ms-workspace-demo
+
 .PHONY: start
-start: 
+start:
 	./start.sh
 
 .PHONY: stop
-stop: 
+stop:
 	./stop.sh
 
-.PHONY: logs
-logs: 
-	docker-compose logs -t
+.PHONY: startkong
+startkong:
+	docker-compose -p ${project} up -d
 
-.PHOMY: update
+.PHONY: stopkong
+stopkong:
+	docker-compose -p ${project} down
+
+.PHONY: logs
+logs:
+	docker-compose -p ${project} logs -t
+
+.PHONY: ps
+ps:
+	docker-compose -p ${project} ps
+
+.PHONY: update
 update:
-	git submodule update --init --recursive
+	- git submodule foreach --recursive 'git submodule sync'
+	- git submodule update --recursive
+	- git submodule update --init --recursive --remote --merge
 
 .PHONY: add
 add:

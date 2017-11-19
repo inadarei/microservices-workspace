@@ -2,8 +2,8 @@ version: "3"
 
 services:
   # Kong API Gateway
-  kong:
-    container_name: kong
+  ms-demo-kong:
+    container_name: ms-demo-kong
     image: kong
     environment:
       - KONG_DATABASE=postgres
@@ -12,29 +12,29 @@ services:
       - KONG_PG_DATABASE=kong
       - KONG_PG_PASSWORD=kong_pw
       #- KONG_PLUGINS_AVAILABLE=jwt,cors,oauth2,request-transformer,response-transformer,rate-limiting
-    expose: 
+    expose:
       - 8000
       - 8001
     ports:
       - 8000:8000
       - 8443:8443
-      - 8001:8001
-      - 7946:7946
-      - 7946:7946/udp
+      #- 8001:8001
+      #- 7946:7946
+      #- 7946:7946/udp
     depends_on:
-      - kong_db
+      - ms-demo-kong-db
     links:
-      - kong_db      
+      - ms-demo-kong-db
     external_links:
       - ms-demo-golang
       - ms-demo-node
     volumes:
       - .:/tmp/run
-    command: /tmp/run/wait-for-it.sh kong_db:5432 -- kong start
-  kong_db:
-    container_name: kong_db
+    command: /tmp/run/wait-for-it.sh ms-demo-kong-db:5432 -- kong start
+  ms-demo-kong-db:
+    container_name: ms-demo-kong-db
     image: postgres:9.5-alpine
-    # port mapping not required for microservices but useful for debugging from 
+    # port mapping not required for microservices but useful for debugging from
     # host machine, during development
     ports:
       - 35432:5432
@@ -47,4 +47,3 @@ services:
 
 volumes:
   kong_db_data:
-
