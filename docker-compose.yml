@@ -7,7 +7,7 @@ services:
     image: kong
     environment:
       - KONG_DATABASE=postgres
-      - KONG_PG_HOST=kong_db
+      - KONG_PG_HOST=ms-demo-kong-db
       - KONG_PG_USER=kong
       - KONG_PG_DATABASE=kong
       - KONG_PG_PASSWORD=kong_pw
@@ -18,9 +18,9 @@ services:
     ports:
       - 8000:8000
       - 8443:8443
-      #- 8001:8001
-      #- 7946:7946
-      #- 7946:7946/udp
+      - 8001:8001
+      - 7946:7946
+      - 7946:7946/udp
     depends_on:
       - ms-demo-kong-db
     links:
@@ -30,14 +30,17 @@ services:
       - ms-demo-node
     volumes:
       - .:/tmp/run
-    command: /tmp/run/wait-for-it.sh ms-demo-kong-db:5432 -- kong start
+    #command: /tmp/run/wait-for-it.sh ms-demo-kong-db:5432 -- kong start
+    command: /tmp/run/wait-for.sh ms-demo-kong-db:5432 --timeout=240 -- kong start
   ms-demo-kong-db:
     container_name: ms-demo-kong-db
     image: postgres:9.5-alpine
     # port mapping not required for microservices but useful for debugging from
     # host machine, during development
-    ports:
-      - 35432:5432
+    # ports:
+    #   - 35432:5432
+    expose:
+      - 5432
     volumes:
       - kong_db_data:/var/lib/postgresql
     environment:
