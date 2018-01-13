@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 func check(e error) {
@@ -45,21 +45,70 @@ func main() {
 
 	for _, cmd := range commands {
 		fmt.Println(cmd)
-		/**
-		out, err := exec.Command("sh", "-c", cmd).Output()
-
-		if err != nil {
-			fmt.Println(string(out))
-		}**/
-
-		out, err := exec.Command(cmd).Output()
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Printf(string(out))
-
+		fmt.Print(execute(cmd))
 	}
 
+	for _, module := range modules {
+		addIfMissing(".gitignore", module.path)
+	}
+
+}
+
+/**
+* Check if file exists. If yes and a string not already contained, add at
+* the end
+ */
+func addIfMissing(filePath string, needle string) {
+	b, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		abort(fmt.Sprintf("%s", err))
+	}
+	content := string(b)
+	if !strings.Contains(content, needle) {
+		content += fmt.Sprintf("%s\n", needle)
+		ioutil.WriteFile(filePath, []byte(content), os.ModeAppend)
+	}
+}
+
+/**
+* Properly execute a shell command without swallowing outputs or any of the
+* silly things Go does by default
+ */
+func execute(command string) string {
+	//cmd = cmd + " 1>&2"
+
+	var output string
+
+	args := strings.Split(command, " ")
+	app := args[0]
+	args = args[1:]
+	cmd := exec.Command(app, args...)
+
+	stderr, err := cmd.StderrPipe()
+	check(err)
+
+	stdout, err2 := cmd.StdoutPipe()
+	check(err2)
+
+	err3 := cmd.Start()
+	check(err3)
+
+	slurpErr, _ := ioutil.ReadAll(stderr)
+	if len(slurpErr) > 0 {
+		output += fmt.Sprintf("%s\n", slurpErr)
+	}
+
+	slurpOut, _ := ioutil.ReadAll(stdout)
+	if len(slurpOut) > 0 {
+		output += fmt.Sprintf("%s\n", slurpOut)
+	}
+
+	errW := cmd.Wait()
+	if errW != nil {
+		_ = err // can add to ouput but not useful for git commands
+	}
+
+	return output
 }
 
 /* debugCurrPath is used for debugging.
