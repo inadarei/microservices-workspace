@@ -6,6 +6,8 @@ export wkdr=$PWD
 cd $wkdr/ms-demo-node && make start
 cd $wkdr/ms-demo-golang && make start
 
-# cd $wkdr && docker-compose up --build -d
-cd $wkdr && make startkong
+cd $wkdr
+
+# make startkong
+
 unset wkdr
