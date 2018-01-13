@@ -5,6 +5,10 @@
   },
 
   "ms-demo-node" : {
-    "url" : "htt://github.com/inadarei/microservices-workspace-ms-demo-node.git"
+    "url" : "https://github.com/inadarei/microservices-workspace-ms-demo-node.git"
+  },
+
+  "kokua" : {
+    "url" : "https://github.com/inadarei/kokua"
   }
 }
