@@ -1,0 +1,14 @@
+{
+  "ms-demo-golang" : {
+    "url"  : "https://github.com/inadarei/microservices-workspace-ms-demo-golang.git",
+    "branch" : "master"
+  },
+
+  "ms-demo-node" : {
+    "url" : "https://github.com/inadarei/microservices-workspace-ms-demo-node.git"
+  },
+
+  "ms-demo-kokua" : {
+    "url" : "https://github.com/inadarei/kokua"
+  }
+}

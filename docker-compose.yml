@@ -29,7 +29,7 @@ services:
       - ms-demo-golang
       - ms-demo-node
     volumes:
-      - .:/tmp/run
+      - ./bin:/tmp/run
     #command: /tmp/run/wait-for-it.sh ms-demo-kong-db:5432 -- kong start
     command: /tmp/run/wait-for.sh ms-demo-kong-db:5432 --timeout=240 -- kong start
   ms-demo-kong-db:
