@@ -8,7 +8,7 @@
     "url" : "https://github.com/inadarei/microservices-workspace-ms-demo-node.git"
   },
 
-  "kokua" : {
+  "ms-demo-kokua" : {
     "url" : "https://github.com/inadarei/kokua"
   }
 }
