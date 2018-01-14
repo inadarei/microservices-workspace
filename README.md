@@ -30,7 +30,7 @@ workspace.
 ## Prerequisites:
 
 A working Docker setup, which you can get relatively easily at this point on Mac
-and Windows: https://www.docker.com/community-edition and has always been
+and Windows: <https://www.docker.com/community-edition#/download> and has always been
 [straighforward on
 Linux](https://docs.docker.com/engine/installation/#platform-support-matrix).
 
