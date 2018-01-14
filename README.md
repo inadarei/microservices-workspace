@@ -55,25 +55,25 @@ To tear-down the project:
 
 ## Using
 
-1. Once everything is properly installed various microservices can be
-   accessed with sub-routes of the API Gateway's URI. In the out-of-the-box
-   installation, you get two microservices respectively at:
+Once everything is properly installed various microservices can be accessed with
+sub-routes of the API Gateway's URI. In the out-of-the-box installation, you
+get two microservices respectively at:
 
-   ```
-   > curl http://0.0.0.0:9080/demogo
-   # and
-   > curl http://0.0.0.0:9080/demonode
-   ```
+```
+> curl http://0.0.0.0:9080/demogo
+# and
+> curl http://0.0.0.0:9080/demonode
+```
 
-   If you want the project to run on a port different from 9080, you can change
-   the value in the topmost
-   [dockor-compose.yml](https://github.com/inadarei/microservices-workspace/blob/master/docker-compose.yml).
-   For instance, to make it run on port 80:
+If you want the project to run on a port different from 9080, you can change
+the value in the topmost
+[dockor-compose.yml](https://github.com/inadarei/microservices-workspace/blob/master/docker-compose.yml).
+For instance, to make it run on port 80:
 
-   ```
-   ports:
-     - "80:80"
-   ```
+```
+ports:
+  - "80:80"
+```
 
 ## Service Discovery – Traefik
 
