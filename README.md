@@ -64,9 +64,9 @@ To tear-down the project:
    installation, you get two microservices respectively at:
 
    ```
-   > curl http://0.0.0.0:8000/demogo
+   > curl http://0.0.0.0:9080/demogo
    # and
-   > curl http://0.0.0.0:8000/demonode
+   > curl http://0.0.0.0:9080/demonode
    ```
 
    If you want Kong to run on a port different from 8000, you can change
@@ -74,7 +74,7 @@ To tear-down the project:
 
    ```
    ports:
-     - 80:8000
+     - "80:80"
    ```
 
 ## Wiring a new service into the Kong API Gateway
@@ -84,6 +84,8 @@ To tear-down the project:
 **A:** The workspace uses a modern, highly capable proxy:
 [Traefik](https://docs.traefik.io/) which automatically discovers services in
 your project and wires them up to the proper sub-routes.
+
+You can see the UI of the proxy at: http://0.0.0.0:9880/
 
 ## How to add more microservices:
 
