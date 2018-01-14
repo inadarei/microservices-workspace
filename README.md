@@ -85,7 +85,8 @@ To tear-down the project:
 [Traefik](https://docs.traefik.io/) which automatically discovers services in
 your project and wires them up to the proper sub-routes.
 
-You can see the UI of the proxy at: http://0.0.0.0:9880/
+Once you have the project up, you can access the web UI of the proxy at:
+http://0.0.0.0:9880/
 
 ## How to add more microservices:
 
