@@ -40,14 +40,11 @@ To run the entire project with all microservices and databases:
 ```
 > git clone https://github.com/inadarei/microservices-workspace.git && cd microservices-workspace
 
-# Bring everything up in daemon mode. 
+# Bring everything up in daemon mode: 
 > make
 
 # Make sure everything started fine:
 > make ps
-
-# Register individual microservices with the API Gateway (Kong):
-> make register_all
 ```
 
 To tear-down the project:
