@@ -77,7 +77,7 @@ To tear-down the project:
      - "80:80"
    ```
 
-## Wiring a new service into the Kong API Gateway
+## Service Discovery – Traefik
 
 **Q:** How are microservices discovered by the front-end proxy?
 
