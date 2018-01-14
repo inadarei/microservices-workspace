@@ -31,18 +31,14 @@ update:
 ps:
 	- @docker ps -a --format="table {{ .ID }}\\t{{ .Names }}\\t{{ .Status }}\\t{{ .Ports }}\\t{{ .Image }}" -f network=msworkspacedemo_default
 
-.PHONY: startkong
-startkong:
+.PHONY: proxystart
+proxystart:
 	docker-compose -p ${project} up -d
 
-.PHONY: stopkong
-stopkong:
+.PHONY: proxystop
+proxystop:
 	docker-compose -p ${project} down
 
 .PHONY: logs
 logs:
 	docker-compose -p ${project} logs -t
-
-.PHONY: register_microservices
-register_all:
-	./register-microservices.sh

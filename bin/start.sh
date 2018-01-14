@@ -7,7 +7,6 @@ cd $wkdr/ms-demo-node && make start
 cd $wkdr/ms-demo-golang && make start
 
 cd $wkdr
-
-# make startkong
+make proxystart
 
 unset wkdr

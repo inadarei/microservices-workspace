@@ -1,52 +1,14 @@
 version: "3"
-
 services:
-  # Kong API Gateway
-  ms-demo-kong:
-    container_name: ms-demo-kong
-    image: kong
-    environment:
-      - KONG_DATABASE=postgres
-      - KONG_PG_HOST=ms-demo-kong-db
-      - KONG_PG_USER=kong
-      - KONG_PG_DATABASE=kong
-      - KONG_PG_PASSWORD=kong_pw
-      #- KONG_PLUGINS_AVAILABLE=jwt,cors,oauth2,request-transformer,response-transformer,rate-limiting
-    expose:
-      - 8000
-      - 8001
+  traefik:
+    image: traefik
+    container_name: traefik
+    labels:
+      - traefik.enable=false
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
     ports:
-      - 8000:8000
-      - 8443:8443
-      - 8001:8001
-      - 7946:7946
-      - 7946:7946/udp
-    depends_on:
-      - ms-demo-kong-db
-    links:
-      - ms-demo-kong-db
-    external_links:
-      - ms-demo-golang
-      - ms-demo-node
+      - "9080:80"   # live traffic
+      - "9880:8080" # admin UI
     volumes:
-      - ./bin:/tmp/run
-    #command: /tmp/run/wait-for-it.sh ms-demo-kong-db:5432 -- kong start
-    command: /tmp/run/wait-for.sh ms-demo-kong-db:5432 --timeout=240 -- kong start
-  ms-demo-kong-db:
-    container_name: ms-demo-kong-db
-    image: postgres:9.5-alpine
-    # port mapping not required for microservices but useful for debugging from
-    # host machine, during development
-    # ports:
-    #   - 35432:5432
-    expose:
-      - 5432
-    volumes:
-      - kong_db_data:/var/lib/postgresql
-    environment:
-      - POSTGRES_USER=kong
-      - POSTGRES_DB=kong
-      - POSTGRES_PASSWORD=kong_pw
-
-volumes:
-  kong_db_data:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/traefik.toml
