@@ -6,9 +6,9 @@ In this setup we show:
 1. A microservcie written in Go and set up with code hot-reloading for
    comfortable development. 
 2. A microservice written in Node and similarly set up with code hot-reloading
-3. A [Traefik]-based frontend proxy wiring microservices to various routes so that the
-   clients don't need to know about, and/or hardcode their calls against, multiple
-   ports the microservices actualy serve from. 
+3. A [Traefik]-based frontend reverse-proxy wiring microservices to various 
+   routes so that the clients don't need to know about, and/or hardcode their 
+   calls against, multiple ports the microservices actualy serve from. 
 4. Resilient set-up of database that a microservice can use (MySQL for the sake
    of the demo). Database setup uses Docker volumes and survives container
    restarts/crashes.
@@ -54,9 +54,9 @@ To tear-down the project:
 
 ## Using
 
-Once everything is properly installed various microservices can be accessed with
-sub-routes of the API Gateway's URI. In the out-of-the-box installation, you
-get two microservices respectively at:
+Once everything is properly installed various microservices can be accessed at
+sub-routes of the front-end reverse proxy's URI. In the out-of-the-box installation, 
+you get two microservices respectively at:
 
 ```
 > curl http://0.0.0.0:9080/demogo
