@@ -6,7 +6,7 @@ In this setup we show:
 1. A microservcie written in Go and set up with code hot-reloading for
    comfortable development. 
 2. A microservice written in Node and similarly set up with code hot-reloading
-3. A [Traefik]-based frontend reverse-proxy wiring microservices to various 
+3. A [Traefik](https://traefik.io/)-based frontend reverse-proxy wiring microservices to various 
    routes so that the clients don't need to know about, and/or hardcode their 
    calls against, multiple ports the microservices actualy serve from. 
 4. Resilient set-up of database that a microservice can use (MySQL for the sake
