@@ -29,7 +29,7 @@ update:
 
 .PHONY: ps
 ps:
-	- @docker ps -a --format="table {{ .ID }}\\t{{ .Names }}\\t{{ .Status }}\\t{{ .Ports }}\\t{{ .Image }}" -f network=msworkspacedemo_default
+	- @docker ps -a --format="table {{ .ID }}\\t{{ .Names }}\\t{{ .Status }}\\t{{ .Image }}\\t{{ .Ports }}" -f network=msworkspacedemo_default
 
 .PHONY: proxystart
 proxystart:
