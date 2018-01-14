@@ -77,9 +77,13 @@ To tear-down the project:
      - 80:8000
    ```
 
-2. **ATTENTION:** unfortunately, git doesn't update external submodules when they change
-so we highly recommend running `git submodule update --init --recursive` in the
-main repo, frequently. 
+## Wiring a new service into the Kong API Gateway
+
+**Q:** How are microservices discovered by the front-end proxy?
+
+**A:** The workspace uses a modern, highly capable proxy:
+[Traefik](https://docs.traefik.io/) which automatically discovers services in
+your project and wires them up to the proper sub-routes.
 
 ## How to add more microservices:
 
@@ -87,20 +91,12 @@ main repo, frequently.
 - Run `make update` in the topmost repository to get the new codebase
 - Edit start.sh and stop.sh scripts under ./bin to add start and stop
   commands for the new module. Existing commands should be used as a guide.
+- Make sure the docker-compose file for the service has labels required
+  by Traefik 
+  
+  example: <https://github.com/inadarei/microservices-workspace-ms-demo-node/blob/master/docker-compose.yml#L6>)
+- Make sure the docker-compose commands are starting your new service
+  in the same project as the Traefik and the rest of the services
 
-# Wiring a new service into the Kong API Gateway
+  example: <https://github.com/inadarei/microservices-workspace-ms-demo-node/blob/master/Makefile#L3> 
 
-1. Add a link to the corresponding container, from the 
-   `links` section of the kong container definition, next
-   to existing definitions under docker-compose.yml, such as:
-
-   ```
-   external_links:
-     - ms-wkspc-demo-golang
-     - ms-wkspc-demo-node
-   ```
-
-2. Add call registering the service into Kong to register-microservices.sh
-3. Pat attention to PORT environmental variable and `expose` attribute in service's
-   Dockerfile and the main docker-compose.yml. These arguments are key for
-   making sure proper upstream port is provided to the Kong API Gateway

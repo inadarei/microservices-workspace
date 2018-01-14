@@ -1,0 +1,29 @@
+################################################################
+# Docker configuration backend
+################################################################
+
+# Enable Docker configuration backend
+[docker]
+
+# Docker server endpoint. Can be a tcp or a unix socket endpoint.
+#
+# Required
+# Default: "unix:///var/run/docker.sock"
+#
+# endpoint = "tcp://10.10.10.10:2375"
+
+# Default domain used.
+# Can be overridden by setting the "traefik.domain" label on a container.
+#
+# Optional
+# Default: ""
+#
+# domain = "docker.localhost"
+
+# Use the IP address from the binded port instead of the inner network one.
+# For specific use-case :)
+#
+# Optional
+# Default: false
+#
+usebindportip = true
