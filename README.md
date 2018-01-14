@@ -65,8 +65,10 @@ To tear-down the project:
    > curl http://0.0.0.0:9080/demonode
    ```
 
-   If you want Kong to run on a port different from 8000, you can change
-   the value in dockor-compose.yml, for instance to make it run on port 80:
+   If you want the project to run on a port different from 9080, you can change
+   the value in the topmost
+   [dockor-compose.yml](https://github.com/inadarei/microservices-workspace/blob/master/docker-compose.yml).
+   For instance, to make it run on port 80:
 
    ```
    ports:
