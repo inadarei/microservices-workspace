@@ -1,6 +1,6 @@
 {
   "ms-demo-golang" : {
-    "url"  : "https://github.com/inadarei/microservices-workspace-ms-demo-golang.git",
+    "url"  : "https://github.com/inadarei/justgo-microservice",
     "branch" : "master"
   },
 
