@@ -1,7 +1,7 @@
 version: "3"
 services:
   traefik:
-    image: traefik
+    image: traefik:1.7
     container_name: traefik
     labels:
       - traefik.enable=false
