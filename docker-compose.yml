@@ -11,4 +11,4 @@ services:
       - "9880:8080" # admin UI
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.toml:/traefik.toml
+      - ./traefik.toml:/etc/traefik/traefik.toml

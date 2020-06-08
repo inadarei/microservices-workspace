@@ -1,14 +1,14 @@
 project:=ms-workspace-demo
 
 ifeq ($(OS),Windows_NT)
-	CHECKOUT_BIN:=bin/goapp/build/checkout.exe
+	CHECKOUT_BIN:=bin/checkout.exe
 else
 	UNAME_S:=$(shell uname -s)
 	ifeq ($(UNAME_S),Linux)
-		CHECKOUT_BIN:=bin/goapp/build/checkout-linux
+		CHECKOUT_BIN:=bin/checkout-linux
 	endif
 	ifeq ($(UNAME_S),Darwin)
-		CHECKOUT_BIN:=bin/goapp/build/checkout-mac
+		CHECKOUT_BIN:=bin/checkout-mac
 	endif
 endif
 
