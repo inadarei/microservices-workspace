@@ -70,7 +70,16 @@ container names (`ms-demo-node` and `ms-demo-golang`) and the Docker
 project namespace: `ms-workspace-demo`.
 
 These hostname can be overwritten using more specific labels in the docker-compose
-file of corresponding microservices.
+file of corresponding microservices, for example by placing something like the 
+following in `ms-demo-node/docker-compose.yaml`:
+
+```yaml
+labels:
+    - "traefik.http.routers.ms-demo-node.rule=Host(`demonode.docker.localhost`)"
+```
+
+which would allow demo node microservice to be available by invoking a shorter
+URL, along the lines of: `curl http://demonode.docker.localhost:9080/`
 
 If you want the project to run on a port different from 9080, you can change
 the value in the topmost
