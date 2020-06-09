@@ -59,10 +59,18 @@ sub-routes of the front-end reverse proxy's URI. In the out-of-the-box installat
 you get two microservices respectively at:
 
 ```
-> curl http://0.0.0.0:9080/demogo
+> curl http://ms-demo-node-ms-workspace-demo.docker.localhost:9080/
 # and
-> curl http://0.0.0.0:9080/demonode
+> curl http://ms-demo-golang-ms-workspace-demo.docker.localhost:9080/
 ```
+
+Please note that "ms-demo-node-ms-workspace-demo" and "ms-demo-golang-ms-workspace-demo"
+are the automatically-detected hostnames (subdomains) generated from the microservice
+container names (`ms-demo-node` and `ms-demo-golang`) and the Docker 
+project namespace: `ms-workspace-demo`.
+
+These hostname can be overwritten using more specific labels in the docker-compose
+file of corresponding microservices.
 
 If you want the project to run on a port different from 9080, you can change
 the value in the topmost

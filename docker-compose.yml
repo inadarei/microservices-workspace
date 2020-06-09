@@ -1,7 +1,7 @@
 version: "3"
 services:
   traefik:
-    image: traefik:1.7
+    image: traefik:2.2
     container_name: traefik
     labels:
       - traefik.enable=false
@@ -11,3 +11,4 @@ services:
       - "9880:8080" # admin UI
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yaml:/etc/traefik/traefik.yaml

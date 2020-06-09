@@ -1,0 +1,24 @@
+################################################################
+# Docker configuration backend
+################################################################
+
+# Docker configuration backend
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    defaultRule: "Host(`{{ trimPrefix `/` .Name }}.docker.localhost`)"
+    #defaultRule: "PathPrefix(`/.Name`)"
+
+#http:
+#  ms-demo-node:
+#    rule: "PathPrefix(`/demonode`)"
+#  middlewares:
+#    ms-demo-node:
+#      replacePathRegex:
+#        regex: "^/demonode(.*)"
+#        replacement: "/$1"
+
+# API and dashboard configuration
+api:
+  insecure: true
+
