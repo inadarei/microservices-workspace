@@ -1,14 +1,30 @@
 project:=ms-workspace-demo
 
 ifeq ($(OS),Windows_NT)
-	CHECKOUT_BIN:=bin/checkout.exe
+	CHECKOUT_BIN:=build/checkout.exe
 else
 	UNAME_S:=$(shell uname -s)
+	MNAME_S:=$(shell uname -m)
 	ifeq ($(UNAME_S),Linux)
-		CHECKOUT_BIN:=bin/checkout-linux
+		ifeq ($(MNAME_S),x86_64)
+			CHECKOUT_BIN:=build/checkout-linux-intel
+		endif
+		ifeq ($(MNAME_S),x86)
+			CHECKOUT_BIN:=build/checkout-linux-intel
+		endif		
+		ifeq ($(MNAME_S),aarch64)
+			CHECKOUT_BIN:=build/checkout-linux-arm
+		endif
+
+		CHECKOUT_BIN:=build/checkout-linux
 	endif
 	ifeq ($(UNAME_S),Darwin)
-		CHECKOUT_BIN:=bin/checkout-mac
+		ifeq ($(MNAME_S),x86_64)
+			CHECKOUT_BIN:=build/checkout-mac
+		endif
+		ifeq ($(MNAME_S),arm64)
+			CHECKOUT_BIN:=build/checkout-mac-applesilicon
+		endif
 	endif
 endif
 
